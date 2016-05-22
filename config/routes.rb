@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  get 'campaigns',                             :controller => :campaigns, :action => :summary
+  get 'campaigns/summary',       as: :summary, :controller => :campaigns, :action => :summary
+  get 'campaigns/:name/details', as: :details, :controller => :campaigns, :action => :details
+
+  root 'campaigns#summary'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

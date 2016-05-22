@@ -20,6 +20,18 @@ describe 'BookingBug::VoteImportService' do
         service.perform
         ::Vote.count.should > 0
       end
+
+      it 'should create records and calculate the scores of campaigns' do
+        ::Campaign.delete_all
+        service.perform
+        ::Campaign.count.should > 0
+      end
+
+      it 'Campaign ssss_uk_01B Tupele\'s score should be 122 ' do
+        c = Campaign.find_by(:name => 'ssss_uk_01B', :candidate => 'Tupele')
+        c.score.should eq 122
+      end
+
     end
   end
 

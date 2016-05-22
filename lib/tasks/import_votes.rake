@@ -5,4 +5,10 @@ namespace :import_votes do
     s = BookingBug::VoteImportService.new("#{Rails.root}/data/votes.txt")
     s.perform
   end
+
+  task :reset => :environment do |t|
+    Vote.delete_all
+    Campaign.delete_all
+  end
+
 end

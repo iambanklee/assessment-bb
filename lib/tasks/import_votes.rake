@@ -11,4 +11,9 @@ namespace :import_votes do
     Campaign.delete_all
   end
 
+  task :reload => :environment do |t|
+    Rake::Task["import_votes:reset"].invoke
+    Rake::Task["import_votes:import"].invoke
+  end
+
 end
